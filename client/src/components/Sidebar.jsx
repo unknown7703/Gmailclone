@@ -1,10 +1,12 @@
-import { Drawer,styled } from "@mui/material";
+import { Drawer } from "@mui/material";
 import SidebarContent from "./SidebarContent";
-const Sidebar = () => {
+
+const Sidebar = ({toggleDrawer,openDrawer}) => {
+
   return (
    <Drawer
    anchor="left"
-   open="true"
+   open={openDrawer}
    variant="persistent"
    hideBackdrop="true"
    ModalProps={{

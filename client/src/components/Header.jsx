@@ -22,14 +22,14 @@ const OptionWrapper = styled(Box)(
 const SearchWrapper = styled(Box)({
     background: "#EAF1FB",
     marginLeft: "80px",
-    borderRadius: "20px",
+    borderRadius: "30px",
     minWidth: "690px",
     maxWidth: "720px",
     height: "48px",
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
-    padding: "0 20px",
+    padding: "0 15px",
     "& > div": {
         width: "100%",
         padding: "0 10px",
@@ -42,15 +42,15 @@ const SearchWrapper = styled(Box)({
     }
 })
 
-const Header = () => {
+const Header = ({toggleDrawer}) => {
   return (
     <StyledAppbar position="static" >
       <Toolbar>
-        <MenuIcon color="action"/>
+        <MenuIcon color="action" onClick={toggleDrawer}/>
         <img src={gmailLogo} alt="Logo" style={{width:"110px",marginLeft:"15px"}}/>
         <SearchWrapper >
             <Search color="action"/>
-            <InputBase placeholder="Search mail" />
+            <InputBase placeholder="Search mail" sx={{}}/>
             <Tune color="action"/>
         </SearchWrapper>
         <OptionWrapper>

@@ -54,15 +54,23 @@ const SendButton = styled(Button)
    background:'#0B57D0',
    color:'white',
    borderRadius:'30px',
-   padding:'0px 5px'
+   padding:'5px 15px',
+   textTransform:'none',
+   fontWeight:'500',
+   width:'60px',
+   '&:hover':{
+    background:'#0B57D0',
+    filter: 'drop-shadow(0 0.2rem 0.25rem rgba(30, 144, 225, 0.5))',
+   }
   }
 );
-const ComposeModal = ({ openCompose }) => {
+const ComposeModal = ({ openCompose ,toggleCompose}) => {
+
   return (
     <Dialog open={openCompose} PaperProps={{ sx: ComposeModalStyle }}>
       <Header>
         <Typography width="100%">New message</Typography>
-        <Close fontSize="small" />
+        <Close fontSize="small" onClick={toggleCompose} sx={{'&:hover':{ filter: 'drop-shadow(0 3px 1px rgba(0, 0, 0, 0.3))',}}} />
       </Header>
       <SubjectWrapper>
         <InputBase placeholder="Recipients" sx={{}}/>

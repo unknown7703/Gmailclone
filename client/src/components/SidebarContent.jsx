@@ -42,7 +42,7 @@ const SidebarContent =()=>
             }
             </List>
         </Box>
-        <ComposeModal openCompose={openCompose}/>
+        <ComposeModal openCompose={openCompose} toggleCompose={toggleCompose}/>
        </Box>
     )
 }

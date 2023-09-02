@@ -5,8 +5,9 @@ import {
   InputBase,
   Button,
   Typography,
+  TextField,
 } from "@mui/material";
-import { Close } from "@mui/icons-material";
+import { Close,DeleteOutline } from "@mui/icons-material";
 const SubjectWrapper =styled(Box)(
     {
         display:'flex',
@@ -35,6 +36,27 @@ const Header = styled(Box)({
     fontWeight: "500",
   },
 });
+
+const BottomBar = styled(Box)
+(
+  {
+    display:'flex',
+    justifyContent:'space-between',
+    padding:'10px 15px',
+    alignItems:'center',
+
+  }
+);
+
+const SendButton = styled(Button)
+(
+  {
+   background:'#0B57D0',
+   color:'white',
+   borderRadius:'30px',
+   padding:'0px 5px'
+  }
+);
 const ComposeModal = ({ openCompose }) => {
   return (
     <Dialog open={openCompose} PaperProps={{ sx: ComposeModalStyle }}>
@@ -46,7 +68,15 @@ const ComposeModal = ({ openCompose }) => {
         <InputBase placeholder="Recipients" sx={{}}/>
         <InputBase placeholder="Subject" />
       </SubjectWrapper>
-      <Button/>
+      <TextField 
+      multiline
+      rows={22}
+      maxRows={22}
+      sx={{'& .MuiOutlinedInput-notchedOutline':{border:'none'}}}/>
+      <BottomBar>
+        <SendButton>Send</SendButton>
+        <DeleteOutline/>
+      </BottomBar>
     </Dialog>
   );
 };

@@ -9,6 +9,8 @@ import {
   TextField,
 } from "@mui/material";
 import { Close, DeleteOutline } from "@mui/icons-material";
+import useApi from "../hooks/useApi";
+import {API_URLS} from "../services/api.url";
 const SubjectWrapper = styled(Box)({
   display: "flex",
   flexDirection: "column",
@@ -56,7 +58,9 @@ const SendButton = styled(Button)({
     filter: "drop-shadow(0 0.2rem 0.25rem rgba(30, 144, 225, 0.5))",
   },
 });
+
 const ComposeModal = ({ openCompose, setOpenCompose }) => {
+  const sentEmailServices =useApi(API_URLS.saveSentEmail);
   const config = {
     Host: "smtp.elasticemail.com",
     Username: process.env.REACT_APP_USERNAME,
@@ -78,6 +82,24 @@ const ComposeModal = ({ openCompose, setOpenCompose }) => {
         Body: data.body,
       }).then((message) => alert(message));
     }
+    const payload ={
+      to: data.to,
+      from: "blackpage9876@gmail.com",
+      subject: data.subject,
+      body: data.body,
+      date: new Date(),
+      image: '',
+      name: 'Gmail Clone',
+      starred: false,
+      type: 'sent',
+    }
+    sentEmailServices.call(payload);
+    if(!sentEmailServices.error)
+    {
+      setOpenCompose(false);
+      setData({});
+    }
+    
     setOpenCompose(false);
   };
   const [data,setData] =useState({});

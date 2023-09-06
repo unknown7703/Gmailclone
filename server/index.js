@@ -1,7 +1,12 @@
 import express from 'express';
 import Connection from './database/db.js';
+import route from './routes/routes.js';
+import cors from 'cors';
 const app = express();
-
+app.use(cors());
+app.use(express.urlencoded({extended:true}));
+app.use(express.json({extended:true}));
+app.use('/',route);
 const PORT=8000;
 Connection();
 app.listen(PORT,()=>console.log(`server is started at port ${PORT}`));

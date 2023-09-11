@@ -9,3 +9,19 @@ export const saveSentEmails =async (request,response)=>
         response.status(500).json(error.message);
     }
 }
+
+export const getEmails=async(request,response)=>
+{
+    try {
+        let emails;
+       if( request.params.type==='sent')
+       {
+        emails=await Email.find({type:'sent'});
+        
+       }
+       return response(200).json(emails); 
+    } catch (error) {
+        console.log(error);
+       response.status(500).json(error.message); 
+    }
+}

@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import { useState } from "react";
 import {
   Dialog,
   Box,
@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import { Close, DeleteOutline } from "@mui/icons-material";
 import useApi from "../hooks/useApi";
-import {API_URLS} from "../services/api.url";
+import { API_URLS } from "../services/api.url";
 const SubjectWrapper = styled(Box)({
   display: "flex",
   flexDirection: "column",
@@ -60,7 +60,7 @@ const SendButton = styled(Button)({
 });
 
 const ComposeModal = ({ openCompose, setOpenCompose }) => {
-  const sentEmailServices =useApi(API_URLS.saveSentEmail);
+  const sentEmailServices = useApi(API_URLS.saveSentEmail);
   const config = {
     Host: "smtp.elasticemail.com",
     Username: process.env.REACT_APP_USERNAME,
@@ -82,29 +82,28 @@ const ComposeModal = ({ openCompose, setOpenCompose }) => {
         Body: data.body,
       }).then((message) => alert(message));
     }
-    const payload ={
+    const payload = {
       to: data.to,
       from: "blackpage9876@gmail.com",
       subject: data.subject,
       body: data.body,
       date: new Date(),
-      image: '',
-      name: 'Gmail Clone',
+      image: "",
+      name: "Gmail Clone",
       starred: false,
-      type: 'sent',
-    }
+      type: "sent",
+    };
     sentEmailServices.call(payload);
-    if(!sentEmailServices.error)
-    {
+    if (!sentEmailServices.error) {
       setOpenCompose(false);
       setData({});
     }
-    
+
     setOpenCompose(false);
   };
-  const [data,setData] =useState({});
-  const valueChange= (e) =>{
-    setData({ ...data,[e.target.name]: e.target.value});
+  const [data, setData] = useState({});
+  const valueChange = (e) => {
+    setData({ ...data, [e.target.name]: e.target.value });
   };
   return (
     <Dialog open={openCompose} PaperProps={{ sx: ComposeModalStyle }}>
@@ -119,8 +118,16 @@ const ComposeModal = ({ openCompose, setOpenCompose }) => {
         />
       </Header>
       <SubjectWrapper>
-        <InputBase placeholder="Recipients" name="to" onChange={(e) => valueChange(e)} />
-        <InputBase placeholder="Subject" name="subject" onChange={(e) => valueChange(e)} />
+        <InputBase
+          placeholder="Recipients"
+          name="to"
+          onChange={(e) => valueChange(e)}
+        />
+        <InputBase
+          placeholder="Subject"
+          name="subject"
+          onChange={(e) => valueChange(e)}
+        />
       </SubjectWrapper>
       <TextField
         name="body"

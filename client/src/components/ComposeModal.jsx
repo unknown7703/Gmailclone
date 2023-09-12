@@ -61,6 +61,7 @@ const SendButton = styled(Button)({
 
 const ComposeModal = ({ openCompose, setOpenCompose }) => {
   const sentEmailServices = useApi(API_URLS.saveSentEmail);
+  const saveDraftService = useApi(API_URLS.saveDraftEmail);
   const config = {
     Host: "smtp.elasticemail.com",
     Username: process.env.REACT_APP_USERNAME,
@@ -69,7 +70,22 @@ const ComposeModal = ({ openCompose, setOpenCompose }) => {
   };
   const handleClose = (e) => {
     e.preventDefault();
-    setOpenCompose(false);
+    const payload = {
+      to: data.to,
+      from: "blackpage9876@gmail.com",
+      subject: data.subject,
+      body: data.body,
+      date: new Date(),
+      image: "",
+      name: "Gmail Clone",
+      starred: false,
+      type: "draft",
+    };
+    saveDraftService.call(payload);
+    if (!saveDraftService.error) {
+      setOpenCompose(false);
+      setData({});
+    }
   };
 
   const sendMail = (e) => {

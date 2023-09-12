@@ -7,5 +7,9 @@ export const API_URLS =
     getEmailFromType: {
         endpoint: 'emails',
         method: 'GET',
+    },
+    saveDraftEmail:{
+        endpoint:'save-draft',
+        method:'POST',
     }
 }

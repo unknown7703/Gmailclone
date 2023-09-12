@@ -14,12 +14,16 @@ export const getEmails=async(request,response)=>
 {
     try {
         let emails;
-       if( request.params.type==='sent')
+       if( false)
        {
-        emails=await Email.find({type:'sent'});
+
+       }
+       else
+       {
+        emails=await Email.find({type:request.params.type});
         
        }
-       return response(200).json(emails); 
+       return response.status(200).json(emails); 
     } catch (error) {
         console.log(error);
        response.status(500).json(error.message); 

@@ -21,7 +21,7 @@ export const SIDEBAR_DATA = [
     
     },
     {
-        name: 'drafts',
+        name: 'draft',
         title: 'Drafts',
         icon: InsertDriveFileOutlined,
     

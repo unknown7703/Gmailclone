@@ -20,6 +20,6 @@ const routes = {
     view: {
         path: '/view',
         element: ViewEmail
-    }
+    },
 }
 export { routes };

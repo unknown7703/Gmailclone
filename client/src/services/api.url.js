@@ -11,5 +11,13 @@ export const API_URLS =
     saveDraftEmail:{
         endpoint:'save-draft',
         method:'POST',
+    },
+    moveEmailToBin:{
+        endpoint:'bin',
+        method:'POST',
+    },
+    toggleStarredEmail:{
+        endpoint:'starred',
+        method:'POST',
     }
 }

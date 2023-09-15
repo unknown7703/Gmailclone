@@ -72,7 +72,7 @@ const ComposeModal = ({ openCompose, setOpenCompose }) => {
     e.preventDefault();
     const payload = {
       to: data.to,
-      from: "blackpage9876@gmail.com",
+      from: process.env.REACT_APP_FROM,
       subject: data.subject,
       body: data.body,
       date: new Date(),

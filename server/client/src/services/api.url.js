@@ -19,5 +19,9 @@ export const API_URLS =
     toggleStarredEmail:{
         endpoint:'starred',
         method:'POST',
+    },
+    deletePermanent:{
+        endpoint:'deletep',
+        method:'POST',
     }
 }

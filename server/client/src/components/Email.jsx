@@ -5,13 +5,23 @@ import { useNavigate } from "react-router-dom";
 import { routes } from "../routes/routes";
 import useApi from "../hooks/useApi";
 import { API_URLS } from "../services/api.url";
-const Email = ({ email, selectedEmails, setrefrest}) => {
+const Email = ({ email, selectedEmails, setrefrest,setSelectedEmails}) => {
   const navigate = useNavigate();
   const toggleStarService = useApi(API_URLS.toggleStarredEmail);
   const toggleStar = () => {
     toggleStarService.call({ id: email._id, value: !email.starred });
     setrefrest(prevState => !prevState);
   };
+
+  const selectOneEmail=(e)=>
+  {
+    if(e.target.checked)
+    {const oneEmail=[email._id];
+    setSelectedEmails(oneEmail);}
+    else{
+      setSelectedEmails([]);
+    }
+  }
   return (
     <Box
       style={{
@@ -23,13 +33,14 @@ const Email = ({ email, selectedEmails, setrefrest}) => {
         cursor: "pointer",
       }}
     >
-      <Checkbox size="sm" checked={selectedEmails.includes(email._id)} />
+      <Checkbox size="sm" onChange={(e)=>selectOneEmail(e)} checked={selectedEmails.includes(email._id)} />
       {email.starred ? (
         <Star
           style={{
             paddingLeft: "10px",
             paddingRight: "15px",
             fontSize: "small",
+            color:'#F4B400',
           }}
           onClick={() => toggleStar()}
         />

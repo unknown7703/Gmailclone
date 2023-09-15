@@ -12,6 +12,7 @@ const Emails = () => {
   const moveEmailToBin =useApi(API_URLS.moveEmailToBin);
   const { openDrawer } = useOutletContext();
   const[selectedEmails , setSelectedEmails]=useState([]);
+  const deleteEmailPermanent =useApi(API_URLS.deletePermanent);
   const[refresh,setrefrest]=useState(false);
   useEffect(() => {
    
@@ -30,11 +31,12 @@ const selectAllEmails=(e)=>
 const moveToBin=(e)=>
 {
   if (type==='bin') {
-    
+    deleteEmailPermanent.call(selectedEmails);
   } else {
     moveEmailToBin.call(selectedEmails);
   }
   setrefrest(prevState => !prevState);
+  console.log(refresh); 
 }
 
   return (
@@ -52,6 +54,7 @@ const moveToBin=(e)=>
         key={email._id}
         email={email}
         selectedEmails={selectedEmails}
+        setSelectedEmails={setSelectedEmails}
         setrefrest={setrefrest}
         />))
       }

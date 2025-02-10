@@ -1,5 +1,5 @@
 
-# Gmail like Mail client
+# A Modern Mail client
 
 This project uses MERN stack to build a web app that provides features like Sending Email using smtp.js , storing sent email, drafted emails, moving emails to bin , marking email as important and deleting emails.
 
